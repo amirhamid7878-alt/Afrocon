@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AFCON 2025 – Morocco & Egypt</title>
+
+<style>
+:root{
+  --grad1: #c4002f; /* احمر مغربي */
+  --grad2: #007a3d; /* اخضر مغربي */
+  --gold:#d4af37;
+
+  --egy-red:#ce1126;
+  --egy-black:#000;
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  background:radial-gradient(circle at top,#111,#000 70%);
+  font-family:Arial, Helvetica, sans-serif;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+}
+
+.afcon-frame{
+  width:95vw;
+  max-width:1600px;
+  margin:20px auto;
+  padding:28px;
+  border-radius:32px;
+  position:relative;
+  box-shadow:0 0 50px rgba(0,0,0,.5);
+  background:linear-gradient(135deg, var(--grad1), var(--grad2), var(--grad1), var(--grad2));
+  background-size:400% 400%;
+  animation:gradientMove 6s linear infinite;
+}
+
+.afcon-frame::before{
+  content:"";
+  position:absolute;
+  inset:12px;
+  border-radius:28px;
+  border:3px solid rgba(212,175,55,.7);
+  animation:glow 2s infinite alternate;
+  pointer-events:none;
+  z-index:1;
+}
+
+.afcon-header{
+  text-align:center;
+  margin-bottom:16px;
+  position: relative;
+  z-index:2;
+}
+
+.afcon-header h1{
+  margin:10px 0 6px;
+  font-size:36px;
+  color:var(--gold);
+  text-shadow:0 0 20px rgba(212,175,55,.9);
+}
+
+.afcon-header span{
+  font-size:20px;
+  color:#eee;
+}
+
+/* أزرار نص ذهبي وخلفية شفافة مع Neon glow */
+.switch-btn{
+  display:block;
+  margin:0 auto 18px;
+  padding:14px 32px;
+  font-size:18px;
+  font-weight:bold;
+  color:#FFD700;  /* نص ذهبي */
+  background: rgba(255, 255, 255, 0.05); /* خلفية شفافة */
+  border: 2px solid #FFD700; /* إطار ذهبي */
+  border-radius:25px;
+  cursor:pointer;
+  box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700; /* Neon glow */
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  z-index:2;
+}
+
+.switch-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700;
+}
+
+.video-wrap{
+  border-radius:28px;
+  overflow:hidden;
+  background:#000;
+  box-shadow:inset 0 0 35px rgba(0,0,0,.95);
+  position: relative; 
+  z-index:2;
+  width:100%;
+  height:65vh;
+}
+
+.video-wrap iframe{
+  width: 100%;
+  height: 100%;
+  border:0;
+}
+
+.afcon-footer{
+  text-align:center;
+  margin-top:14px;
+  font-size:18px;
+  color:#ccc;
+  position: relative;
+  z-index:2;
+}
+
+.afcon-footer a{
+  color:var(--gold);
+  text-decoration:none;
+}
+
+/* التوقيع داخل الإطار */
+.signature {
+  position: absolute;
+  bottom:20px;
+  right:20px;
+  font-size: 14px;
+  color: var(--gold);
+  font-weight: bold;
+  text-shadow: 0 0 5px rgba(212,175,55,.8);
+  pointer-events: none;
+  z-index:3;
+}
+
+/* Amir Hamid Neon داخل الفيديو على اليمين */
+.amir-touch {
+  position: absolute;
+  top: 2%;       
+  right: 2%;     
+  padding: 2% 4%;   
+  font-size: 4vw;      
+  font-weight: bold;
+  color: #FFD700;      
+  text-align: center;
+  border: 3px solid #FFD700;  /* إطار ذهبي */
+  border-radius: 10px;
+  background: rgba(0,0,0,0.2); /* خلفية شفافة */
+  z-index: 10;       
+
+  /* Neon glow effect */
+  text-shadow:
+    0 0 5px #FFD700,
+    0 0 10px #FFD700,
+    0 0 20px #FFD700,
+    0 0 40px #FFD700;
+
+  animation: neonGlow 2s ease-in-out infinite alternate;
+}
+
+@keyframes neonGlow {
+  0% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  }
+  50% {
+    text-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700, 0 0 60px #FFD700;
+    box-shadow: 0 0 20px #FFD700, 0 0 40px #FFD700;
+  }
+  100% {
+    text-shadow: 0 0 5px #FFD700, 0 0 10px #FFD700, 0 0 20px #FFD700, 0 0 40px #FFD700;
+    box-shadow: 0 0 10px #FFD700, 0 0 20px #FFD700;
+  }
+}
+
+/* ألوان حسب القناة */
+.amir-morocco {
+  background: linear-gradient(135deg, #c4002f, #007a3d);
+}
+
+.amir-egypt {
+  background: linear-gradient(135deg, #ce1126, #000);
+}
+
+@media(max-width:900px){
+  .amir-touch{
+    font-size:6vw;
+    padding:2% 4%;
+  }
+  .video-wrap { height:40vh; }
+  .afcon-header h1{font-size:26px}
+}
+
+@keyframes glow{
+  0%{box-shadow:0 0 8px rgba(212,175,55,.4)}
+  100%{box-shadow:0 0 30px rgba(212,175,55,1)}
+}
+
+@keyframes gradientMove{
+  0%{background-position:0% 50%}
+  50%{background-position:100% 50%}
+  100%{background-position:0% 50%}
+}
+</style>
+</head>
+
+<body>
+
+<div class="afcon-frame" id="frame">
+
+  <div class="afcon-header">
+    <h1 id="title">Arryadia • AFCON 2025 🇲🇦</h1>
+    <span id="subtitle">Morocco • Live Broadcast</span>
+  </div>
+
+  <!-- زر التبديل المصري -->
+  <button class="switch-btn" id="egyBtn" onclick="switchToEgypt()">مشاهدة BeIN Sports Max 1 🇪🇬</button>
+  <!-- زر العودة المغربي -->
+  <button class="switch-btn" id="morBtn" onclick="switchToMorocco()" style="display:none;">العودة إلى Arryadia 🇲🇦</button>
+
+  <div class="video-wrap">
+    <iframe id="liveFrame" src="https://can2025.aflam4you.net/embed.php?vid=2003" allowfullscreen></iframe>
+    <!-- Amir Hamid Neon داخل الفيديو على اليمين -->
+    <div class="amir-touch amir-morocco" id="amirTouch">Amir Hamid</div>
+  </div>
+
+  <div class="afcon-footer" id="channelLink">
+    <a href="https://can2025.aflam4you.net/arryadia-tnt-live-funding-tv_2003.html" target="_blank">Arryadia TNT</a>
+  </div>
+
+  <!-- التوقيع داخل الإطار -->
+  <div class="signature">Designed by Amir Hamid</div>
+
+</div>
+
+<script>
+function switchToEgypt(){
+  document.getElementById("liveFrame").src =
+    "https://can2025.aflam4you.net/embed.php?vid=179";
+  document.getElementById("channelLink").innerHTML =
+    '<a href="https://can2025.aflam4you.net/bein-sports-max-1-kora-funding-tv_179.html" target="_blank">BeIN Sports Max 1</a>';
+  document.getElementById("title").innerText = "BeIN Sports Max 1 • AFCON 2025 🇪🇬";
+  document.getElementById("subtitle").innerText = "Egypt • Live Broadcast";
+  document.documentElement.style.setProperty('--grad1', '#ce1126');
+  document.documentElement.style.setProperty('--grad2', '#000');
+  document.getElementById("egyBtn").style.display = "none";
+  document.getElementById("morBtn").style.display = "block";
+
+  const amir = document.getElementById("amirTouch");
+  amir.classList.remove("amir-morocco");
+  amir.classList.add("amir-egypt");
+}
+
+function switchToMorocco(){
+  document.getElementById("liveFrame").src =
+    "https://can2025.aflam4you.net/embed.php?vid=2003";
+  document.getElementById("channelLink").innerHTML =
+    '<a href="https://can2025.aflam4you.net/arryadia-tnt-live-funding-tv_2003.html" target="_blank">Arryadia TNT</a>';
+  document.getElementById("title").innerText = "Arryadia • AFCON 2025 🇲🇦";
+  document.getElementById("subtitle").innerText = "Morocco • Live Broadcast";
+  document.documentElement.style.setProperty('--grad1', '#c4002f');
+  document.documentElement.style.setProperty('--grad2', '#007a3d');
+  document.getElementById("egyBtn").style.display = "block";
+  document.getElementById("morBtn").style.display = "none";
+
+  const amir = document.getElementById("amirTouch");
+  amir.classList.remove("amir-egypt");
+  amir.classList.add("amir-morocco");
+}
+</script>
+
+</body>
+</html>
